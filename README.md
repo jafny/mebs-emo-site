@@ -30,7 +30,10 @@ Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and
 publishes `dist/` to GitHub Pages.
 
 One-time setup in the repo: **Settings → Pages → Build and deployment → Source:
-GitHub Actions**.
+GitHub Actions**. This must be done by a repo admin in the UI — the workflow's
+`GITHUB_TOKEN` is not permitted to create the Pages site, so the first run fails
+with `Create Pages site failed / Resource not accessible by integration` until
+the toggle is set. Re-run the workflow afterwards.
 
 The site is then served at `https://<user>.github.io/mebs-emo-site/`.
 
