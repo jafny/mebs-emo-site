@@ -29,6 +29,11 @@ npm run preview  # serve the production build
 Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and
 publishes `dist/` to GitHub Pages.
 
+The `github-pages` environment only accepts deployments from the repository's
+**default branch**. If a deploy job fails after two seconds with no steps and no
+logs, that is the cause — either make the branch you are deploying from the
+default (Settings → Branches), or add it to the workflow's `branches:` list.
+
 One-time setup in the repo: **Settings → Pages → Build and deployment → Source:
 GitHub Actions**. This must be done by a repo admin in the UI — the workflow's
 `GITHUB_TOKEN` is not permitted to create the Pages site, so the first run fails

@@ -2,7 +2,10 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    # The github-pages environment only accepts deployments from the repo's
+    # default branch, which is currently claude/mebs-portfolio-site-yaog5x.
+    # Once the default is switched to main, drop the second entry.
+    branches: [main, claude/mebs-portfolio-site-yaog5x]
   workflow_dispatch:
 
 permissions:
