@@ -74,7 +74,7 @@ function Hero() {
         <p className="hero__lede">
           Summa cum laude. DECA champion. Engineer. She walked into one of the hardest
           universities on the planet, took the highest honors it gives out, and
-          collected a wall of trophies on the way through. This is not a humble page.
+          collected a wall of trophies on the way through.
         </p>
         <div className="hero__cta">
           <a className="btn btn--primary" href="#record">

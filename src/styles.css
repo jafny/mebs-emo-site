@@ -11,7 +11,7 @@
   --bone-dim: #9c968b;
   --blood: #c8102e;
   --blood-soft: #8d0c21;
-  --bruise: #4b5f96;
+  --void: #4b5f96;
   --edge: rgba(232, 227, 217, 0.12);
 
   --display: 'Cinzel', 'Times New Roman', serif;
@@ -169,8 +169,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; m
   color: rgba(232, 227, 217, 0.16);
   animation: hover 9s ease-in-out infinite;
 }
-.hero__raven--l { left: -2%; top: 18%; transform: scaleX(-1); }
-.hero__raven--r { right: -2%; bottom: 14%; animation-delay: -4s; }
+.hero__raven--l { left: 2%; top: 15%; transform: scaleX(1); }
+.hero__raven--r { right: 2%; bottom: 20%; animation-delay: -4s; transform: scaleX(-1); }
 @keyframes hover {
   0%, 100% { translate: 0 0; }
   50% { translate: 0 -22px; }
