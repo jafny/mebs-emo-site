@@ -271,7 +271,7 @@ function Hail() {
       <Reveal>
         <Skull className="hail__skull" />
         <p className="section__eyebrow">In conclusion</p>
-        <h2 className="section__title hail__title">All Hail Mebs</h2>
+        <h2 className="section__title hail__title">Hear her cackles and tremble</h2>
         <p className="section__sub">
           Highest honors. A wall of DECA hardware. An engineer's hands. The ravens
           have been talking about her for years — now you know why.
@@ -308,7 +308,7 @@ export default function App() {
         <Hero />
         <Marquee items={MARQUEE} />
         <Record />
-        <HypeBand text="ALL HAIL MEBS" />
+        <HypeBand text="Hear her cackles and tremble" />
         <Arsenal />
         <Marquee items={MARQUEE_ALT} reverse />
         <Chronicle />
