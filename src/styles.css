@@ -508,16 +508,16 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; m
 .divider span { flex: 1; height: 1px; background: var(--edge); }
 .divider svg { width: 60px; }
 
-/* --- summon + footer ----------------------------------------------------- */
+/* --- hail + footer ----------------------------------------------------- */
 
-.summon { text-align: center; position: relative; }
-.summon .section__sub { margin-inline: auto; }
-.summon__skull {
+.hail { text-align: center; position: relative; }
+.hail .section__sub { margin-inline: auto; }
+.hail__skull {
   width: 90px;
   color: rgba(200, 16, 46, 0.5);
   margin-bottom: 1.6rem;
 }
-.summon .hero__cta { margin-top: 2.2rem; }
+.hail .hero__cta { margin-top: 2.2rem; }
 
 .footer {
   position: relative;

@@ -8,7 +8,7 @@ const NAV = [
   ['The Record', 'record'],
   ['Arsenal', 'arsenal'],
   ['Chronicle', 'chronicle'],
-  ['Summon', 'summon'],
+  ['All Hail', 'hail'],
 ]
 
 function Nav() {
@@ -216,20 +216,20 @@ function Quote() {
   )
 }
 
-function Summon() {
+function Hail() {
   return (
-    <section className="section section--alt summon" id="summon">
+    <section className="section section--alt hail" id="hail">
       <Reveal>
-        <Skull className="summon__skull" />
+        <Skull className="hail__skull" />
         <p className="section__eyebrow">Exhibit IV</p>
-        <h2 className="section__title">Summon Her</h2>
+        <h2 className="section__title">All Hail Mebs</h2>
         <p className="section__sub">
-          Hiring, recruiting, or just here to be impressed — the résumé is only the
-          opening statement.
+          Highest honors, a wall of DECA hardware, and an engineer's hands. The
+          ravens have been talking about her for years — now you know why.
         </p>
         <div className="hero__cta">
           <a className="btn btn--primary" href="#top">
-            Back to the top
+            Run it back
           </a>
         </div>
       </Reveal>
@@ -262,7 +262,7 @@ export default function App() {
         <Arsenal />
         <Chronicle />
         <Quote />
-        <Summon />
+        <Hail />
       </main>
       <Footer />
     </>
