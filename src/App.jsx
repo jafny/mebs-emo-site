@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Raven, Skull, Sigil, Divider } from './components/Art.jsx'
 import Reveal from './components/Reveal.jsx'
 import FeatherFall from './components/FeatherFall.jsx'
-import { ACCOLADES, SKILLS, CHRONICLE, MARQUEE } from './data.js'
+import HypeBand from './components/HypeBand.jsx'
+import Flock from './components/Flock.jsx'
+import { ACCOLADES, SKILLS, CHRONICLE, MARQUEE, MARQUEE_ALT } from './data.js'
 
 const NAV = [
-  ['The Record', 'record'],
+  ['Receipts', 'record'],
   ['Arsenal', 'arsenal'],
-  ['Chronicle', 'chronicle'],
+  ['The Saga', 'chronicle'],
   ['All Hail', 'hail'],
 ]
 
@@ -38,9 +40,11 @@ function Nav() {
 }
 
 function Hero() {
+  const letters = 'MEBS'.split('')
   return (
     <header className="hero" id="top">
       <div className="hero__glow" aria-hidden="true" />
+      <Flock />
       <Raven className="hero__raven hero__raven--l" />
       <Raven className="hero__raven hero__raven--r" />
       <Sigil className="hero__sigil" />
@@ -51,18 +55,30 @@ function Hero() {
           <span className="hero__dot" aria-hidden="true">·</span>
           <span>Baltimore, MD</span>
         </p>
-        <h1 className="hero__title" data-text="MEBS">
-          MEBS
+
+        <h1 className="hero__title" aria-label="Mebs">
+          {letters.map((ch, i) => (
+            <span
+              key={i}
+              className="hero__letter"
+              data-text={ch}
+              style={{ animationDelay: `${i * 90}ms` }}
+              aria-hidden="true"
+            >
+              {ch}
+            </span>
+          ))}
         </h1>
+
         <p className="hero__gothic">Nevermore Ordinary</p>
         <p className="hero__lede">
           Summa cum laude. DECA champion. Engineer. She walked into one of the hardest
-          universities in the country and left with the highest honors it gives out —
-          and a shelf of trophies on the way through.
+          universities on the planet, took the highest honors it gives out, and
+          collected a wall of trophies on the way through. This is not a humble page.
         </p>
         <div className="hero__cta">
           <a className="btn btn--primary" href="#record">
-            See the record
+            Witness the receipts
           </a>
           <a className="btn" href="#arsenal">
             The arsenal
@@ -78,11 +94,11 @@ function Hero() {
   )
 }
 
-function Marquee() {
-  const row = [...MARQUEE, ...MARQUEE]
+function Marquee({ items, reverse = false }) {
+  const row = [...items, ...items]
   return (
     <div className="marquee" aria-hidden="true">
-      <div className="marquee__track">
+      <div className={`marquee__track ${reverse ? 'marquee__track--rev' : ''}`}>
         {row.map((item, i) => (
           <span key={i} className="marquee__item">
             {item}
@@ -98,10 +114,10 @@ function Record() {
   return (
     <section className="section" id="record">
       <Reveal>
-        <p className="section__eyebrow">Exhibit I</p>
-        <h2 className="section__title">The Record</h2>
+        <p className="section__eyebrow">The receipts</p>
+        <h2 className="section__title">The Résumé of a Legend</h2>
         <p className="section__sub">
-          Three things worth knowing. All three are documented.
+          Three facts. All three documented. All three ridiculous.
         </p>
       </Reveal>
 
@@ -126,21 +142,54 @@ function Record() {
   )
 }
 
+/* Counts a skill bar up from zero once it scrolls into view. */
 function SkillBar({ name, level, delay }) {
-  const [width, setWidth] = useState(0)
+  const ref = useRef(null)
+  const [value, setValue] = useState(0)
+
   useEffect(() => {
-    const t = setTimeout(() => setWidth(level), 200 + delay)
-    return () => clearTimeout(t)
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduced || !('IntersectionObserver' in window)) {
+      setValue(level)
+      return
+    }
+
+    let raf
+    const run = () => {
+      const start = performance.now()
+      const DURATION = 1400
+      const step = (now) => {
+        const t = Math.min(1, (now - start - delay) / DURATION)
+        if (t > 0) setValue(Math.round(level * (1 - Math.pow(1 - t, 3))))
+        if (t < 1) raf = requestAnimationFrame(step)
+      }
+      raf = requestAnimationFrame(step)
+    }
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          run()
+          io.disconnect()
+        }
+      },
+      { threshold: 0.4 }
+    )
+    if (ref.current) io.observe(ref.current)
+    return () => {
+      io.disconnect()
+      cancelAnimationFrame(raf)
+    }
   }, [level, delay])
 
   return (
-    <li className="skill">
+    <li className="skill" ref={ref}>
       <div className="skill__head">
         <span className="skill__name">{name}</span>
-        <span className="skill__val">{level}</span>
+        <span className="skill__val">{value}</span>
       </div>
       <div className="skill__track">
-        <div className="skill__fill" style={{ width: `${width}%` }} />
+        <div className="skill__fill" style={{ width: `${value}%` }} />
       </div>
     </li>
   )
@@ -150,10 +199,10 @@ function Arsenal() {
   return (
     <section className="section section--alt" id="arsenal">
       <Reveal>
-        <p className="section__eyebrow">Exhibit II</p>
+        <p className="section__eyebrow">Loadout</p>
         <h2 className="section__title">The Arsenal</h2>
         <p className="section__sub">
-          Engineer's hands, strategist's mouth. A dangerous combination.
+          Engineer's hands. Strategist's mouth. Genuinely unfair combination.
         </p>
       </Reveal>
 
@@ -178,8 +227,8 @@ function Chronicle() {
   return (
     <section className="section" id="chronicle">
       <Reveal>
-        <p className="section__eyebrow">Exhibit III</p>
-        <h2 className="section__title">The Chronicle</h2>
+        <p className="section__eyebrow">Origin story</p>
+        <h2 className="section__title">The Saga</h2>
         <p className="section__sub">How the legend got written.</p>
       </Reveal>
 
@@ -187,7 +236,7 @@ function Chronicle() {
         {CHRONICLE.map((c, i) => (
           <Reveal as="li" key={c.title} delay={i * 100} className="timeline__item">
             <span className="timeline__dot" aria-hidden="true" />
-            <span className="timeline__year">{c.year}</span>
+            <span className="timeline__year">Chapter {c.year}</span>
             <h3 className="timeline__title">{c.title}</h3>
             <p className="timeline__body">{c.body}</p>
           </Reveal>
@@ -221,11 +270,11 @@ function Hail() {
     <section className="section section--alt hail" id="hail">
       <Reveal>
         <Skull className="hail__skull" />
-        <p className="section__eyebrow">Exhibit IV</p>
-        <h2 className="section__title">All Hail Mebs</h2>
+        <p className="section__eyebrow">In conclusion</p>
+        <h2 className="section__title hail__title">All Hail Mebs</h2>
         <p className="section__sub">
-          Highest honors, a wall of DECA hardware, and an engineer's hands. The
-          ravens have been talking about her for years — now you know why.
+          Highest honors. A wall of DECA hardware. An engineer's hands. The ravens
+          have been talking about her for years — now you know why.
         </p>
         <div className="hero__cta">
           <a className="btn btn--primary" href="#top">
@@ -257,11 +306,14 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <Marquee />
+        <Marquee items={MARQUEE} />
         <Record />
+        <HypeBand text="ALL HAIL MEBS" />
         <Arsenal />
+        <Marquee items={MARQUEE_ALT} reverse />
         <Chronicle />
         <Quote />
+        <HypeBand text="NEVERMORE" reverse />
         <Hail />
       </main>
       <Footer />
