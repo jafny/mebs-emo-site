@@ -29,10 +29,17 @@ npm run preview  # serve the production build
 Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and
 publishes `dist/` to GitHub Pages.
 
-The `github-pages` environment only accepts deployments from the repository's
-**default branch** (`main`). If a deploy job ever fails after two seconds with no
-steps and no logs, that is the cause — deploy from the default branch, or add
-the branch you are deploying from to the workflow's `branches:` list.
+If a deploy job ever fails after ~2 seconds with **no steps and no logs**, it was
+rejected by an environment rule before it ran. Two separate settings control
+this, and both matter:
+
+1. **Settings → Pages → Source: GitHub Actions.** Without it, `configure-pages`
+   fails in the *build* job (`Create Pages site failed`). The workflow token
+   cannot turn this on itself.
+2. **Settings → Environments → `github-pages` → Deployment branches and tags.**
+   This is pinned to whatever the default branch was when Pages was first
+   enabled, and it does *not* follow later changes to the default branch. If it
+   names an old branch, deploys from `main` are refused with no logs.
 
 One-time setup in the repo: **Settings → Pages → Build and deployment → Source:
 GitHub Actions**. This must be done by a repo admin in the UI — the workflow's
