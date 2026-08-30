@@ -32,7 +32,8 @@ export default function ScrollRaven() {
 
     const phase = progress * Math.PI * WAVES
     const x = Math.sin(phase) * SWAY
-    const y = progress * (window.innerHeight - bird.offsetHeight - 24)
+    /* Matches the gutter's 76px top offset in styles.css. */
+    const y = progress * (window.innerHeight - 76 - bird.offsetHeight - 24)
     /* Bank into the turn using the slope of the same sine. */
     const tilt = Math.cos(phase) * 16
 
