@@ -13,6 +13,7 @@ import Chronicle from './sections/Chronicle.jsx'
 import Oracle from './sections/Oracle.jsx'
 import Quote from './sections/Quote.jsx'
 import Reckoning from './sections/Reckoning.jsx'
+import Certificate from './sections/Certificate.jsx'
 import Hail from './sections/Hail.jsx'
 import Footer from './sections/Footer.jsx'
 import { MARQUEE, MARQUEE_ALT } from './data.js'
@@ -40,6 +41,7 @@ function Site() {
         <Quote />
         <HypeBand text="NEVERMORE" reverse />
         <Reckoning />
+        <Certificate />
         <Hail />
       </main>
       <Footer />

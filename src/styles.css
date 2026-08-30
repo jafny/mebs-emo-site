@@ -624,6 +624,45 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; m
   margin: 0;
 }
 
+/* --- certificate --------------------------------------------------------- */
+
+.certificate { text-align: center; }
+.certificate .section__sub { margin-inline: auto; }
+
+.certificate__controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0.8rem;
+  margin-bottom: 2.4rem;
+}
+.certificate__label {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.certificate__input { flex: 1 1 240px; max-width: 340px; }
+.certificate__controls .btn { cursor: pointer; }
+.certificate__controls .btn[disabled] { opacity: 0.55; cursor: progress; }
+.certificate__error {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--blood);
+  margin: -1.4rem 0 2rem;
+}
+
+.certificate__frame {
+  max-width: 760px;
+  margin-inline: auto;
+  border: 1px solid var(--edge);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+  line-height: 0;
+}
+.certificate__frame svg { width: 100%; height: auto; }
+
 /* --- the reckoning ------------------------------------------------------- */
 
 .reckoning__shared {
