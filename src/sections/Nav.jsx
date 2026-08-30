@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Raven } from '../components/Art.jsx'
 import HypeDial from '../components/HypeDial.jsx'
+import SoundToggle from '../components/SoundToggle.jsx'
 
 const LINKS = [
   ['Receipts', 'record'],
@@ -35,6 +36,7 @@ export default function Nav() {
           ))}
         </ul>
         <HypeDial />
+        <SoundToggle />
       </div>
     </nav>
   )
