@@ -25,7 +25,7 @@ export default function Flock({ count = 5 }) {
           style={{
             top: `${b.top}%`,
             animationDelay: `${b.delay}s`,
-            animationDuration: `${b.duration}s`,
+            animationDuration: `calc(${b.duration}s * var(--hype-speed, 1))`,
             '--scale': b.scale,
           }}
         />

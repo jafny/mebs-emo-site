@@ -1,13 +1,15 @@
 import { Raven, Sigil } from '../components/Art.jsx'
 import Flock from '../components/Flock.jsx'
+import { useHype } from '../lib/HypeContext.jsx'
 
 export default function Hero() {
+  const { birds } = useHype()
   const letters = 'MEBS'.split('')
 
   return (
     <header className="hero" id="top">
       <div className="hero__glow" aria-hidden="true" />
-      <Flock />
+      <Flock count={birds} />
       <Raven className="hero__raven hero__raven--l" />
       <Raven className="hero__raven hero__raven--r" />
       <Sigil className="hero__sigil" />

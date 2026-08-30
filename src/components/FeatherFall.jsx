@@ -26,7 +26,7 @@ export default function FeatherFall({ count = 14 }) {
           style={{
             left: `${f.left}%`,
             animationDelay: `${f.delay}s`,
-            animationDuration: `${f.duration}s`,
+            animationDuration: `calc(${f.duration}s * var(--hype-speed, 1))`,
             '--scale': f.scale,
             '--drift': f.drift,
           }}

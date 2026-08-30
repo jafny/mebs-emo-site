@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Raven } from '../components/Art.jsx'
+import HypeDial from '../components/HypeDial.jsx'
 
 const LINKS = [
   ['Receipts', 'record'],
@@ -24,13 +25,16 @@ export default function Nav() {
         <Raven className="nav__raven" />
         <span>MEBS</span>
       </a>
-      <ul className="nav__links">
-        {LINKS.map(([label, id]) => (
-          <li key={id}>
-            <a href={`#${id}`}>{label}</a>
-          </li>
-        ))}
-      </ul>
+      <div className="nav__tools">
+        <ul className="nav__links">
+          {LINKS.map(([label, id]) => (
+            <li key={id}>
+              <a href={`#${id}`}>{label}</a>
+            </li>
+          ))}
+        </ul>
+        <HypeDial />
+      </div>
     </nav>
   )
 }

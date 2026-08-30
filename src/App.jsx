@@ -1,5 +1,6 @@
 import FeatherFall from './components/FeatherFall.jsx'
 import HypeBand from './components/HypeBand.jsx'
+import { HypeProvider, useHype } from './lib/HypeContext.jsx'
 import Nav from './sections/Nav.jsx'
 import Hero from './sections/Hero.jsx'
 import Marquee from './sections/Marquee.jsx'
@@ -11,11 +12,13 @@ import Hail from './sections/Hail.jsx'
 import Footer from './sections/Footer.jsx'
 import { MARQUEE, MARQUEE_ALT } from './data.js'
 
-export default function App() {
+function Site() {
+  const { feathers } = useHype()
+
   return (
     <>
       <div className="grain" aria-hidden="true" />
-      <FeatherFall />
+      <FeatherFall count={feathers} />
       <Nav />
       <main>
         <Hero />
@@ -31,5 +34,13 @@ export default function App() {
       </main>
       <Footer />
     </>
+  )
+}
+
+export default function App() {
+  return (
+    <HypeProvider>
+      <Site />
+    </HypeProvider>
   )
 }
