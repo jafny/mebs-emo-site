@@ -1,0 +1,36 @@
+import { useEffect, useState } from 'react'
+import { Raven } from '../components/Art.jsx'
+
+const LINKS = [
+  ['Receipts', 'record'],
+  ['Arsenal', 'arsenal'],
+  ['The Saga', 'chronicle'],
+  ['All Hail', 'hail'],
+]
+
+export default function Nav() {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  return (
+    <nav className={`nav ${scrolled ? 'nav--solid' : ''}`}>
+      <a className="nav__mark" href="#top">
+        <Raven className="nav__raven" />
+        <span>MEBS</span>
+      </a>
+      <ul className="nav__links">
+        {LINKS.map(([label, id]) => (
+          <li key={id}>
+            <a href={`#${id}`}>{label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
