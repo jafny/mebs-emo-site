@@ -624,6 +624,55 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; m
   margin: 0;
 }
 
+/* --- ravenstorm ---------------------------------------------------------- */
+
+/* The whole theme is tokenised, so inverting it is a handful of overrides. */
+:root[data-storm='on'] {
+  --ink: #2a0510;
+  --ink-2: #3a0716;
+  --ink-3: #48091c;
+  --bone: #fff6ee;
+  --bone-dim: #e2b9bf;
+  --blood: #f5e9dd;
+  --blood-soft: #d8b8a8;
+  --edge: rgba(255, 246, 238, 0.28);
+}
+:root[data-storm='on'] body {
+  animation: stormpulse 0.9s ease-in-out infinite;
+}
+@keyframes stormpulse {
+  0%, 100% { background-color: var(--ink); }
+  50% { background-color: #3d0716; }
+}
+
+.storm {
+  position: fixed;
+  inset: 0;
+  z-index: 11;
+  overflow: hidden;
+  pointer-events: none;
+}
+.storm__bird {
+  position: absolute;
+  left: -20%;
+  width: clamp(60px, 8vw, 120px);
+  color: rgba(255, 246, 238, 0.75);
+  animation-name: crossing;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* --- scroll companion ---------------------------------------------------- */
 
 .gutter {
@@ -884,6 +933,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; m
     transition-duration: 0.01ms !important;
   }
   .reveal { opacity: 1; transform: none; }
+  .storm { display: none; }
   /* The dial keeps changing density and colour, but never motion. */
   :root[data-hype='max'] .hero__inner,
   :root[data-hype='max'] .marquee,

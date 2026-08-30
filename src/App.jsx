@@ -1,6 +1,7 @@
 import FeatherFall from './components/FeatherFall.jsx'
 import HypeBand from './components/HypeBand.jsx'
 import ScrollRaven from './components/ScrollRaven.jsx'
+import Ravenstorm from './components/Ravenstorm.jsx'
 import { HypeProvider, useHype } from './lib/HypeContext.jsx'
 import ColdOpen from './sections/ColdOpen.jsx'
 import Nav from './sections/Nav.jsx'
@@ -24,6 +25,7 @@ function Site() {
       <FeatherFall count={feathers} />
       <Nav />
       <ScrollRaven />
+      <Ravenstorm />
       <main>
         <Hero />
         <Marquee items={MARQUEE} />
