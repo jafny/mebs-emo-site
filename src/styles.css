@@ -624,6 +624,37 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; m
   margin: 0;
 }
 
+/* --- stanza -------------------------------------------------------------- */
+
+.stanza { text-align: center; }
+.stanza__eyebrow { margin: 2.4rem 0 2rem; }
+
+.stanza__body {
+  max-width: 62ch;
+  margin: 0 auto 2.4rem;
+  text-align: left;
+}
+.stanza__line {
+  margin: 0 0 0.35rem;
+  min-height: 1.6em;
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 2.1vw, 1.32rem);
+  font-style: italic;
+  line-height: 1.6;
+  color: rgba(232, 227, 217, 0.86);
+}
+.stanza__line--in { padding-left: 1.6rem; }
+.stanza__break { display: block; height: 1.6rem; }
+
+.stanza__caret {
+  display: inline-block;
+  width: 0.45ch; height: 1em;
+  margin-left: 0.1em;
+  vertical-align: -0.12em;
+  background: var(--blood);
+  animation: pulse 1s steps(2, end) infinite;
+}
+
 /* --- certificate --------------------------------------------------------- */
 
 .certificate { text-align: center; }
