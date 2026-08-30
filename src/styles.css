@@ -624,6 +624,79 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; m
   margin: 0;
 }
 
+/* --- oracle -------------------------------------------------------------- */
+
+.oracle { text-align: center; }
+.oracle .section__sub { margin-inline: auto; }
+
+.oracle__stage {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 1.6rem;
+  padding: clamp(2rem, 6vw, 4rem) 0;
+}
+.oracle__sigil {
+  position: absolute;
+  top: 50%; left: 50%;
+  translate: -50% -50%;
+  width: min(58vmin, 420px);
+  color: rgba(232, 227, 217, 0.08);
+  animation: spin calc(60s * var(--hype-speed, 1)) linear infinite;
+  transition: color 0.6s ease;
+}
+/* Once it has spoken, the sigil warms up. */
+.oracle__stage.is-answered .oracle__sigil { color: rgba(200, 16, 46, 0.22); }
+
+.oracle__form {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  width: min(100%, 620px);
+}
+.oracle__label {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.oracle__input {
+  flex: 1 1 260px;
+  min-width: 0;
+  background: rgba(7, 7, 10, 0.7);
+  border: 1px solid var(--edge);
+  color: var(--bone);
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  padding: 0.9rem 1.1rem;
+  text-align: center;
+}
+.oracle__input::placeholder { color: var(--bone-dim); opacity: 0.7; font-style: italic; }
+.oracle__input:focus { outline: none; border-color: var(--blood); }
+.oracle__ask { flex: 0 0 auto; cursor: pointer; }
+
+.oracle__answer {
+  position: relative;
+  min-height: 3.2em;
+  margin: 0;
+  max-width: 22ch;
+  font-family: var(--gothic);
+  font-size: clamp(1.5rem, 4.4vw, 2.6rem);
+  line-height: 1.35;
+  color: var(--bone);
+  text-shadow: 0 0 34px rgba(200, 16, 46, 0.45);
+}
+.oracle__caret {
+  display: inline-block;
+  width: 0.5ch; height: 1em;
+  margin-left: 0.08em;
+  vertical-align: -0.1em;
+  background: var(--blood);
+  animation: pulse 1s steps(2, end) infinite;
+}
+
 /* --- ravenstorm ---------------------------------------------------------- */
 
 /* The whole theme is tokenised, so inverting it is a handful of overrides. */

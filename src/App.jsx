@@ -10,6 +10,7 @@ import Marquee from './sections/Marquee.jsx'
 import Record from './sections/Record.jsx'
 import Arsenal from './sections/Arsenal.jsx'
 import Chronicle from './sections/Chronicle.jsx'
+import Oracle from './sections/Oracle.jsx'
 import Quote from './sections/Quote.jsx'
 import Hail from './sections/Hail.jsx'
 import Footer from './sections/Footer.jsx'
@@ -34,6 +35,7 @@ function Site() {
         <Arsenal />
         <Marquee items={MARQUEE_ALT} reverse />
         <Chronicle />
+        <Oracle />
         <Quote />
         <HypeBand text="NEVERMORE" reverse />
         <Hail />

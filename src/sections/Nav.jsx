@@ -6,6 +6,7 @@ const LINKS = [
   ['Receipts', 'record'],
   ['Arsenal', 'arsenal'],
   ['The Saga', 'chronicle'],
+  ['Oracle', 'oracle'],
   ['All Hail', 'hail'],
 ]
 
