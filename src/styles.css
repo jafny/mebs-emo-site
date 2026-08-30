@@ -624,6 +624,83 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; m
   margin: 0;
 }
 
+/* --- cold open ----------------------------------------------------------- */
+
+.coldopen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  pointer-events: auto;
+}
+/* Two halves so the curtain can tear apart rather than simply fade. */
+.coldopen__half {
+  position: absolute;
+  left: 0; right: 0;
+  height: 50.5%;
+  background: var(--ink);
+  animation: tear 0.7s cubic-bezier(0.7, 0, 0.3, 1) 1.9s forwards;
+}
+.coldopen__half--top { top: 0; }
+.coldopen__half--bottom { bottom: 0; animation-name: tear-down; }
+@keyframes tear { to { transform: translateY(-102%); } }
+@keyframes tear-down { to { transform: translateY(102%); } }
+
+.coldopen__stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: clamp(0.5rem, 2vw, 1.4rem);
+  animation: coldfade 0.5s ease 1.9s forwards;
+}
+@keyframes coldfade { to { opacity: 0; } }
+
+.coldopen__eye {
+  width: min(38vw, 260px);
+  color: var(--bone);
+  filter: drop-shadow(0 0 40px rgba(200, 16, 46, 0.65));
+}
+/* The eye opens by scaling the pupil group up from a closed slit. */
+.coldopen__eye .eye__ball {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scaleY(0.02);
+  animation: eyeopen 0.85s cubic-bezier(0.2, 0.9, 0.2, 1) 0.25s forwards;
+}
+@keyframes eyeopen { to { transform: scaleY(1); } }
+
+.coldopen__word {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(3rem, 14vw, 8rem);
+  letter-spacing: 0.14em;
+  margin: 0;
+  color: var(--bone);
+  /* Carved in by a wipe rather than a fade — it should feel cut, not drawn. */
+  clip-path: inset(0 100% 0 0);
+  animation: carve 0.75s cubic-bezier(0.7, 0, 0.2, 1) 1.05s forwards;
+}
+@keyframes carve { to { clip-path: inset(0 0 0 0); } }
+
+.coldopen__skip {
+  position: absolute;
+  right: clamp(1rem, 4vw, 3rem);
+  bottom: clamp(1rem, 4vw, 2.4rem);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  background: transparent;
+  border: 1px solid var(--edge);
+  padding: 0.7rem 1.4rem;
+  cursor: pointer;
+}
+.coldopen__skip:hover { color: var(--bone); border-color: var(--bone); }
+.coldopen__skip:focus-visible { outline: 1px solid var(--blood); outline-offset: 4px; }
+
 /* --- hype dial ----------------------------------------------------------- */
 
 .nav__tools { display: flex; align-items: center; gap: clamp(0.6rem, 2vw, 1.4rem); }

@@ -1,6 +1,7 @@
 import FeatherFall from './components/FeatherFall.jsx'
 import HypeBand from './components/HypeBand.jsx'
 import { HypeProvider, useHype } from './lib/HypeContext.jsx'
+import ColdOpen from './sections/ColdOpen.jsx'
 import Nav from './sections/Nav.jsx'
 import Hero from './sections/Hero.jsx'
 import Marquee from './sections/Marquee.jsx'
@@ -17,6 +18,7 @@ function Site() {
 
   return (
     <>
+      <ColdOpen />
       <div className="grain" aria-hidden="true" />
       <FeatherFall count={feathers} />
       <Nav />
