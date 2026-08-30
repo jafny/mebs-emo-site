@@ -1,10 +1,46 @@
+import { useEffect, useRef } from 'react'
 import { Raven, Sigil } from '../components/Art.jsx'
 import Flock from '../components/Flock.jsx'
 import { useHype } from '../lib/HypeContext.jsx'
+import usePrefersReducedMotion from '../lib/usePrefersReducedMotion.js'
+import useRafLoop from '../lib/useRafLoop.js'
+
+const PULL = 14 // px the title drifts toward the cursor at the screen's edge
 
 export default function Hero() {
   const { birds } = useHype()
+  const reduced = usePrefersReducedMotion()
   const letters = 'MEBS'.split('')
+  const innerRef = useRef(null)
+  const pointer = useRef({ x: 0, y: 0 })
+  const eased = useRef({ x: 0, y: 0 })
+  /* Coarse pointers have no hover to follow, and a tap should not fling the
+     title across the screen. */
+  const magnetic = !reduced && typeof window !== 'undefined' &&
+    window.matchMedia('(hover: hover) and (pointer: fine)').matches
+
+  useEffect(() => {
+    if (!magnetic) return undefined
+    const onMove = (e) => {
+      pointer.current = {
+        x: (e.clientX / window.innerWidth - 0.5) * 2,
+        y: (e.clientY / window.innerHeight - 0.5) * 2,
+      }
+    }
+    window.addEventListener('pointermove', onMove, { passive: true })
+    return () => window.removeEventListener('pointermove', onMove)
+  }, [magnetic])
+
+  useRafLoop(() => {
+    const el = innerRef.current
+    if (!el) return
+    /* Eased rather than tracked exactly, so the title glides instead of
+       snapping to the cursor. */
+    eased.current.x += (pointer.current.x - eased.current.x) * 0.06
+    eased.current.y += (pointer.current.y - eased.current.y) * 0.06
+    el.style.setProperty('--mx', `${(eased.current.x * PULL).toFixed(2)}px`)
+    el.style.setProperty('--my', `${(eased.current.y * PULL).toFixed(2)}px`)
+  }, magnetic)
 
   return (
     <header className="hero" id="top">
@@ -14,7 +50,7 @@ export default function Hero() {
       <Raven className="hero__raven hero__raven--r" />
       <Sigil className="hero__sigil" />
 
-      <div className="hero__inner">
+      <div className="hero__inner" ref={innerRef}>
         <p className="hero__eyebrow">
           <span>Johns Hopkins University</span>
           <span className="hero__dot" aria-hidden="true">·</span>
