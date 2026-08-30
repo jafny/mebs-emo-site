@@ -23,17 +23,34 @@ export const ACCOLADES = [
     stat: "JHU",
     statLabel: "biomedical",
   },
+  {
+    tag: "Public Record",
+    title: "Beat the IRS",
+    kicker: "Three years of back taxes. She went and won.",
+    body: "Most people fold the moment the envelope arrives. She read the code, built the case, and took the United States federal government to task over its own arithmetic — and the government blinked first.",
+    stat: "1–0",
+    statLabel: "vs. the feds",
+  },
+  {
+    tag: "Full Range",
+    title: "Not Just The Résumé",
+    kicker: "Musical theater. Juggling. Genuine multi-threading.",
+    body: "The terrifying part was never the transcript. It is that the same person who cracks a case in twenty minutes will also hold a note, hold a stage, and hold two to three balls in the air while doing it.",
+    stat: "∞",
+    statLabel: "bits available",
+  },
 ];
 
 export const SKILLS = [
   { name: "Engineering & Systems Design", level: 95 },
-  { name: "Software / Code", level: 20 },
   { name: "Business Case Strategy", level: 96 },
   { name: "Public Speaking & Pitch", level: 98 },
   { name: "Data & Analysis", level: 90 },
+  { name: "Arguing With The Federal Government", level: 99 },
   { name: "Sheer Relentlessness", level: 100 },
-  { name: "Can juggle two to three balls at once", level: 60 },
   { name: "Musical theater", level: 80 },
+  { name: "Can juggle two to three balls at once", level: 60 },
+  { name: "Software / Code", level: 20 },
 ];
 
 export const CHRONICLE = [
@@ -45,26 +62,25 @@ export const CHRONICLE = [
   {
     year: "II",
     title: "Fights the IRS",
-    body: "She fights the IRS for three years of back taxes and wins. Is officially more brace than the Joker.",
+    body: "She fights the IRS for three years of back taxes and wins. Is officially more brave than the Joker.",
   },
-
   {
-    year: "II",
+    year: "III",
     title: "The DECA Rampage",
     body: "Competition after competition. Cases cracked, judges converted, hardware collected. Other teams start checking the bracket for her name.",
   },
   {
-    year: "III",
+    year: "IV",
     title: "Trial by Engineering",
     body: "Problem sets that end at sunrise. Labs that fight back. She ships anyway — and the builds keep getting cleaner.",
   },
   {
-    year: "IV",
+    year: "V",
     title: "Summa Cum Laude",
     body: "Highest honors the university awards. The record does the talking. She never had to raise her voice once.",
   },
   {
-    year: "V",
+    year: "VI",
     title: "Whatever Is Next",
     body: "It has no idea what is coming for it.",
   },
@@ -87,5 +103,7 @@ export const MARQUEE_ALT = [
   "BOW BEFORE YOUR QUEEN",
   "QUOTH THE RAVEN",
   "TOP OF THE CLASS",
+  "BEAT THE IRS",
   "NO NOTES",
+  "STILL UNDEFEATED",
 ];

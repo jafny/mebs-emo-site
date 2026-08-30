@@ -77,3 +77,83 @@ export function Divider() {
     </div>
   )
 }
+
+/* A single eye, opening. The cold open animates its ry from 0 to full. */
+export function RavenEye({ className = '', style }) {
+  return (
+    <svg className={className} style={style} viewBox="0 0 200 120" aria-hidden="true">
+      <path
+        className="eye__lid"
+        d="M8 60C40 18 76 2 100 2s60 16 92 58c-32 42-68 58-92 58S40 102 8 60z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        opacity=".55"
+      />
+      <g className="eye__ball">
+        <ellipse cx="100" cy="60" rx="34" ry="34" fill="#c8102e" opacity=".9" />
+        <ellipse cx="100" cy="60" rx="13" ry="13" fill="#07070a" />
+        <ellipse cx="90" cy="49" rx="5" ry="5" fill="#e8e3d9" opacity=".7" />
+      </g>
+    </svg>
+  )
+}
+
+/* Wing-flap variant of the raven: the wings are their own groups so the
+   scroll companion can drive them from CSS. */
+export function RavenFlying({ className = '', style }) {
+  return (
+    <svg className={className} style={style} viewBox="0 0 200 160" aria-hidden="true">
+      <g fill="currentColor">
+        <path d="M96 74c-8 14-10 30-6 48l-16-14c-8-7-12-17-12-28 0-6 2-12 6-18l28 12z" opacity=".9" />
+        <path className="wing wing--far" d="M92 70C74 48 48 36 14 34c30-16 62-12 88 14z" opacity=".6" />
+        <path className="wing wing--near" d="M96 66C86 40 92 16 116 0c6 26 2 50-12 70z" />
+        <path d="M104 60c12-6 24-6 36 2 8 5 12 12 12 21 0 10-6 18-16 22-14 6-28 4-40-6 4-14 7-27 8-39z" />
+        <path d="M150 78l32 6c2 1 2 3 0 4l-32 8c3-6 3-12 0-18z" />
+      </g>
+      <circle cx="140" cy="76" r="3.2" fill="#c8102e" />
+    </svg>
+  )
+}
+
+/* Laurel-ish wreath for the certificate border. */
+export function Wreath({ className = '', style }) {
+  const leaf = (i, side) => {
+    const a = -70 + i * 14
+    const r = a * (Math.PI / 180)
+    const x = 100 + Math.sin(r) * 78 * side
+    const y = 100 - Math.cos(r) * 78
+    return (
+      <ellipse
+        key={`${side}-${i}`}
+        cx={x}
+        cy={y}
+        rx="4.5"
+        ry="11"
+        transform={`rotate(${a * side + (side < 0 ? 180 : 0)} ${x} ${y})`}
+        fill="currentColor"
+        opacity=".65"
+      />
+    )
+  }
+  return (
+    <svg className={className} style={style} viewBox="0 0 200 200" aria-hidden="true">
+      {Array.from({ length: 11 }, (_, i) => leaf(i, 1))}
+      {Array.from({ length: 11 }, (_, i) => leaf(i, -1))}
+      <circle cx="100" cy="100" r="88" fill="none" stroke="currentColor" strokeWidth="1" opacity=".3" />
+    </svg>
+  )
+}
+
+/* Wax seal, stamped at the foot of the certificate. */
+export function Seal({ className = '', style }) {
+  return (
+    <svg className={className} style={style} viewBox="0 0 120 120" aria-hidden="true">
+      <circle cx="60" cy="60" r="46" fill="#8d0c21" />
+      <circle cx="60" cy="60" r="46" fill="none" stroke="#c8102e" strokeWidth="3" />
+      <circle cx="60" cy="60" r="36" fill="none" stroke="#07070a" strokeWidth="1" opacity=".45" />
+      <path d="M60 32l26 44H34l26-44z" fill="none" stroke="#07070a" strokeWidth="2" opacity=".6" />
+      <circle cx="60" cy="62" r="9" fill="#07070a" opacity=".55" />
+    </svg>
+  )
+}

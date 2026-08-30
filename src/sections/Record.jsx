@@ -9,7 +9,7 @@ export default function Record() {
         <p className="section__eyebrow">The receipts</p>
         <h2 className="section__title">The Résumé of a Legend</h2>
         <p className="section__sub">
-          Three facts. All three documented. All three ridiculous.
+          Five facts. All five documented. All five ridiculous.
         </p>
       </Reveal>
 
